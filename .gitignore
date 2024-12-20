@@ -1,0 +1,6 @@
+.DS_Store
+.idea
+.vsdoce
+*.log
+.swagger
+.app.env
