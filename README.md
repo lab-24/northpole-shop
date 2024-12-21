@@ -28,10 +28,10 @@ Only API Endpoints for devices are implemented in this demo:
 
 ### JWT Authorization
 
-The API has been protected with a JWT Authorization. There are no endpoints and
-user tables implemented yet. For testing purposes, please set `JWT_DEBUG=true`
-in `.app.env` file and you will get a valid Token during startup of the
-application. Export this token an use it in your requests.  
+The API is secured using JWT Authorization. Currently, there are no endpoints
+or user tables implemented. For testing purposes, set `JWT_DEBUG=true` in the
+`.app.env` file. This will generate a valid token during the application startup.
+Export the token and include it in your requests.
 
 ```
 export TOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMjN9.V6upMbO3L7r2AZqj36dOronI0hONPCAmvO1QB2JXUX0
@@ -92,3 +92,7 @@ export TOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMjN9.V6upMbO3L
   curl -H "Accept: application/json" -H "Authorization: Bearer ${TOKEN}" \
   -X GET localhost:8080/api/devices/e7f1f3c0-0b6b-11ec-82a8-0242ac130012
 ```
+
+## Database Schema
+
+![Database schema](./docs/db_schema.png "Database schema")
