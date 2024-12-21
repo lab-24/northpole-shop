@@ -41,7 +41,7 @@ export TOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMjN9.V6upMbO3L
 
 ### List devices
 
-* Get all devices:__
+* Get all devices:  
 
 ```
   curl -H "Accept: application/json" -H "Authorization: Bearer ${TOKEN}" localhost:8080/api/devices

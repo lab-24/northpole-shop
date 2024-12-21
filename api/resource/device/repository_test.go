@@ -2,6 +2,7 @@ package device_test
 
 import (
 	"testing"
+	"time"
 
 	"github.com/DATA-DOG/go-sqlmock"
 	"github.com/google/uuid"
@@ -41,7 +42,7 @@ func TestRepository_Create(t *testing.T) {
 	id := uuid.New()
 	mock.ExpectBegin()
 	mock.ExpectExec("^INSERT INTO \"devices\" ").
-		WithArgs(id, "Name", "SerialNumber", uuid.NullUUID{}.UUID.String(), uuid.NullUUID{}.UUID.String(), 0).
+		WithArgs(id, "Name", "SerialNumber", uuid.NullUUID{}.UUID.String(), uuid.NullUUID{}.UUID.String(), time.Now().Unix()).
 		WillReturnResult(sqlmock.NewResult(1, 1))
 	mock.ExpectCommit()
 
