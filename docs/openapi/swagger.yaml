@@ -2,6 +2,8 @@ basePath: /api
 definitions:
   device.DeviceDTO:
     properties:
+      created_time:
+        type: integer
       device_type:
         $ref: '#/definitions/device.DeviceTypeDTO'
       id:
