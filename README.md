@@ -32,31 +32,63 @@ The API has been protected with a JWT Authorization. There are no endpoints and
 user tables implemented yet. For testing purposes, please set `JWT_DEBUG=true`
 in `.app.env` file and you will get a valid Token during startup of the
 application. Export this token an use it in your requests.  
-`export TOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMjN9.V6upMbO3L7r2AZqj36dOronI0hONPCAmvO1QB2JXUX0`
+
+```
+export TOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMjN9.V6upMbO3L7r2AZqj36dOronI0hONPCAmvO1QB2JXUX0
+```
 
 ![Get your JWT test token](./docs/startup_jwt_token.png "Startup Application")
 
 ### List devices
 
-* Get all devices:  
-  `curl -H "Accept: application/json" -H "Authorization: Bearer ${TOKEN}" localhost:8080/api/devices`
+* Get all devices:__
+
+```
+  curl -H "Accept: application/json" -H "Authorization: Bearer ${TOKEN}" localhost:8080/api/devices
+```
+
 * Get all devices from location_id `e7f1f3c0-0b6b-11ec-82a8-0242ac130008`
   (Location garage):  
-  `curl -H "Accept: application/json" -H "Authorization: Bearer ${TOKEN}" localhost:8080/api/devices?location_id=e7f1f3c0-0b6b-11ec-82a8-0242ac130008`
+
+```
+  curl -H "Accept: application/json" -H "Authorization: Bearer ${TOKEN}" localhost:8080/api/devices?location_id=e7f1f3c0-0b6b-11ec-82a8-0242ac130008
+```
+
 * Get all devices before GMT `Wed Dec 18 2024 00:16:51 GMT+0000`
   (Unix Timestamp: `1734481011`)  
-  `curl -H "Accept: application/json" -H "Authorization: Bearer ${TOKEN}" localhost:8080/api/devices?end_time=1734481011`
+
+```
+  curl -H "Accept: application/json" -H "Authorization: Bearer ${TOKEN}" localhost:8080/api/devices?end_time=1734481011
+```
 
 ### CRUD Device
 
 * Create a device:  
-  `curl -H "Accept: application/json" -H "Authorization: Bearer ${TOKEN}" -X POST -d '{"name":"Rudy the red nose","serial_number":"RUDY","location_id":"e7f1f3c0-0b6b-11ec-82a8-0242ac130008","device_type_id":"e7f1f3c0-0b6b-11ec-82a8-0242ac130006"}' localhost:8080/api/devices`
+
+```
+  curl -H "Accept: application/json" -H "Authorization: Bearer ${TOKEN}" -X POST \
+  -d '{"name":"Rudy the red nose","serial_number":"RUDY","location_id":"e7f1f3c0-0b6b-11ec-82a8-0242ac130008","device_type_id":"e7f1f3c0-0b6b-11ec-82a8-0242ac130006"}' \
+  localhost:8080/api/devices
+```
 
 * Update a device:  
-  `curl -H "Accept: application/json" -H "Authorization: Bearer ${TOKEN}" -X PUT -d '{"name":"Rudy the red nose","serial_number":"RUDY","location_id":"e7f1f3c0-0b6b-11ec-82a8-0242ac130008","device_type_id":"e7f1f3c0-0b6b-11ec-82a8-0242ac130006"}' localhost:8080/api/devices/e7f1f3c0-0b6b-11ec-82a8-0242ac130012`
+
+```
+  curl -H "Accept: application/json" -H "Authorization: Bearer ${TOKEN}" -X PUT \
+  -d '{"name":"Rudy the red nose","serial_number":"RUDY","location_id":"e7f1f3c0-0b6b-11ec-82a8-0242ac130008","device_type_id":"e7f1f3c0-0b6b-11ec-82a8-0242ac130006"}' \
+  localhost:8080/api/devices/e7f1f3c0-0b6b-11ec-82a8-0242ac130012 
+```
 
 * Delete a device:  
-  `curl -H "Accept: application/json" -H "Authorization: Bearer ${TOKEN}" -X DELETE localhost:8080/api/devices/e7f1f3c0-0b6b-11ec-82a8-0242ac130012`
+
+```
+  curl -H "Accept: application/json" -H "Authorization: Bearer ${TOKEN}" \
+  -X DELETE localhost:8080/api/devices/e7f1f3c0-0b6b-11ec-82a8-0242ac130012
+```
 
 * Read a device:  
-  `curl -H "Accept: application/json" -H "Authorization: Bearer ${TOKEN}" -X GET localhost:8080/api/devices/e7f1f3c0-0b6b-11ec-82a8-0242ac130012`
+
+```
+  curl -H "Accept: application/json" -H "Authorization: Bearer ${TOKEN}" \
+  -X GET localhost:8080/api/devices/e7f1f3c0-0b6b-11ec-82a8-0242ac130012
+```
