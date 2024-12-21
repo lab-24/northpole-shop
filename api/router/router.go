@@ -49,6 +49,10 @@ func New(c *config.Conf, l *zerolog.Logger, v *validator.Validate, db *gorm.DB) 
 		r.Use(middleware.ContentTypeJSON)
 		deviceAPI := device.New(l, v, db)
 		r.With(httpin.NewInput(QueryDeviceList{})).Method(http.MethodGet, "/devices", requestlog.NewHandler(deviceAPI.List, l))
+		r.Method(http.MethodPost, "/devices", requestlog.NewHandler(deviceAPI.Create, l))
+		r.Method(http.MethodGet, "/devices/{id}", requestlog.NewHandler(deviceAPI.Read, l))
+		r.Method(http.MethodPut, "/devices/{id}", requestlog.NewHandler(deviceAPI.Update, l))
+		r.Method(http.MethodDelete, "/devices/{id}", requestlog.NewHandler(deviceAPI.Delete, l))
 	})
 
 	// Public routes

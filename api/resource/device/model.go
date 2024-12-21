@@ -75,9 +75,9 @@ func (b *Device) ToDto() *DeviceDTO {
 
 type DeviceForm struct {
 	Name          string `json:"name" form:"required,max=255"`
-	SerialNumber  string `json:"serial_number" form:"required,alpha_space,max=255"`
-	LocationId    string `json:"location_id"`
-	DeviceTypeId  string `json:"device_type_id"`
+	SerialNumber  string `json:"serial_number" form:"required,max=255"`
+	LocationId    string `json:"location_id" form:"required,uuid"`
+	DeviceTypeId  string `json:"device_type_id" form:"required,uuid"`
 }
 
 
@@ -91,10 +91,12 @@ func (bs Devices) ToDto() []*DeviceDTO {
 }
 
 func (f *DeviceForm) ToModel() *Device {
+	deviceTypeID, _ := uuid.Parse(f.DeviceTypeId)
+	locationID, _ := uuid.Parse(f.LocationId)
 	return &Device{
 		Name:          f.Name,
 		SerialNumber:  f.SerialNumber,
-		DeviceTypeID:  uuid.MustParse(f.DeviceTypeId),
-		LocationID:    uuid.MustParse(f.LocationId),
+		DeviceTypeID:  deviceTypeID,
+		LocationID:    locationID,
 	}
 }

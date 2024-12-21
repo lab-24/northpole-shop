@@ -7,6 +7,7 @@ import (
 	"strings"
 
 	"github.com/go-playground/validator/v10"
+	"github.com/google/uuid"
 )
 
 const (
@@ -31,6 +32,7 @@ func New() *validator.Validate {
 	})
 
 	validate.RegisterValidation("alpha_space", isAlphaSpace)
+	validate.RegisterValidation("uuid", isValidUUID)
 
 	return validate
 }
@@ -51,6 +53,8 @@ func ToErrResponse(err error) *ErrResponse {
 				resp.Errors[i] = fmt.Sprintf("%s must be a valid URL", err.Field())
 			case "alpha_space":
 				resp.Errors[i] = fmt.Sprintf("%s can only contain alphabetic and space characters", err.Field())
+			case "uuid":
+				resp.Errors[i] = fmt.Sprintf("%s must be a valid UUID", err.Field())
 			case "datetime":
 				if err.Param() == "2006-01-02" {
 					resp.Errors[i] = fmt.Sprintf("%s must be a valid date", err.Field())
@@ -72,3 +76,8 @@ func isAlphaSpace(fl validator.FieldLevel) bool {
 	reg := regexp.MustCompile(alphaSpaceRegexString)
 	return reg.MatchString(fl.Field().String())
 }
+
+func isValidUUID(fl validator.FieldLevel) bool {
+    _, err := uuid.Parse(fl.Field().String())
+    return err == nil
+ }

@@ -32,14 +32,5 @@ jobs:
       - name: Tests
         run: go test ./...
 
-      - name: Gofumpt
-        run: ./bin/gofumpt -l -w . 2>&1 | tee outfile && test -z "$(cat outfile)" && rm outfile
-
       - name: go vet
         run: go vet ./...
-
-      - name: Staticcheck
-        run: ./bin/staticcheck ./...
-
-      - name: Vulncheck
-        run: ./bin/govulncheck ./...

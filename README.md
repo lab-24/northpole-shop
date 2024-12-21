@@ -11,6 +11,19 @@ database settings accordingly.
 Use `make run` to build and start the Docker container, which includes both
 the PostgreSQL database and the backend API.
 
+## Endpoints
+
+Only API Endpoints for devices are implemented in this demo:
+| Name          | HTTP Method | Route             | Query Parameter                 |
+|---------------|-------------|-------------------|---------------------------------|
+| List Devices  | GET         | /api/devices      | start_date end_date location_id |
+| Create Device | POST        | /api/devices      |                                 |
+| Read Device   | GET         | /api/devices/{id} |                                 |
+| Update Device | PUT         | /api/devices/{id} |                                 |
+| Delete Device | DELETE      | /api/devices/{id} |                                 |
+
+💡 [OpenApi Documentation](/docs/openapi/)
+
 ## Test Endpoints
 
 ### JWT Authorization
@@ -34,9 +47,16 @@ application. Export this token an use it in your requests.
   (Unix Timestamp: `1734481011`)  
   `curl -H "Accept: application/json" -H "Authorization: Bearer ${TOKEN}" localhost:8080/api/devices?end_time=1734481011`
 
-## Endpoints
-| Name         | HTTP Method | Route          | Query Parameter                 |
-|--------------|-------------|----------------|---------------------------------|
-| List Devices | GET         | /api/devices   | start_date end_date location_id |
+### CRUD Device
 
-💡 [OpenApi Documentation](/docs/openapi/)
+* Create a device:  
+  `curl -H "Accept: application/json" -H "Authorization: Bearer ${TOKEN}" -X POST -d '{"name":"Rudy the red nose","serial_number":"RUDY","location_id":"e7f1f3c0-0b6b-11ec-82a8-0242ac130008","device_type_id":"e7f1f3c0-0b6b-11ec-82a8-0242ac130006"}' localhost:8080/api/devices`
+
+* Update a device:  
+  `curl -H "Accept: application/json" -H "Authorization: Bearer ${TOKEN}" -X PUT -d '{"name":"Rudy the red nose","serial_number":"RUDY","location_id":"e7f1f3c0-0b6b-11ec-82a8-0242ac130008","device_type_id":"e7f1f3c0-0b6b-11ec-82a8-0242ac130006"}' localhost:8080/api/devices/e7f1f3c0-0b6b-11ec-82a8-0242ac130012`
+
+* Delete a device:  
+  `curl -H "Accept: application/json" -H "Authorization: Bearer ${TOKEN}" -X DELETE localhost:8080/api/devices/e7f1f3c0-0b6b-11ec-82a8-0242ac130012`
+
+* Read a device:  
+  `curl -H "Accept: application/json" -H "Authorization: Bearer ${TOKEN}" -X GET localhost:8080/api/devices/e7f1f3c0-0b6b-11ec-82a8-0242ac130012`
