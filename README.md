@@ -1,4 +1,4 @@
-The **Northpole Shop** is a simple RESTful API built using Go.
+The **Northpole Shop** is simple RESTful API built using Go.
 The implementation is inspired by the tutorial:  
 [Building a Dockerized RESTful API Application in Go](https://learning-cloud-native-go.github.io/docs/building-a-dockerized-restful-api-application-in-go/).
 
