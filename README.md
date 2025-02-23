@@ -4,7 +4,7 @@ The implementation is inspired by the tutorial:
 
 ## Run the Backend
 
-Before running the Docker image for the first time, create an `.app.env` file.
+Before running the Docker image the first time, create an `.app.env` file.
 You can copy the contents of the `.app.env.template` file and configure the
 database settings accordingly.
 
